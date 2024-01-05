@@ -1,0 +1,15 @@
+services:
+  backend:
+    labels:
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=ellipsys-resolver"
+      - "traefik.http.routers.backend.rule=Host(`ik1-104-58708.vs.sakura.ne.jp`) && PathPrefix(`/api/v2/`)"
+  frontend:
+    labels:
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=ellipsys-resolver"
+      - "traefik.http.routers.frontend.rule=Host(`ik1-104-58708.vs.sakura.ne.jp`)"
+
+networks:
+  traefik-proxy:
+    external: true

@@ -1,0 +1,28 @@
+services:
+  backend:
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    image: 242781479181.dkr.ecr.ap-northeast-1.amazonaws.com/webapp_ikeda_backend
+    networks:
+      - traefik-proxy
+      - default
+    labels:
+      - "traefik.enable=true"
+
+  frontend:
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    image: 242781479181.dkr.ecr.ap-northeast-1.amazonaws.com/webapp_ikeda_frontend
+    networks:
+      - traefik-proxy
+      - default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.frontend.service=frontend"
+
+

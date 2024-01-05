@@ -1,0 +1,17 @@
+{
+	"name": "Docker Template",
+	"dockerComposeFile": "compose.yaml",
+	"service": "app1",
+	"workspaceFolder": "/workspace",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+	"forwardPorts": [8000,3000],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vsliveshare.vsliveshare"
+			]
+		}
+	}
+}

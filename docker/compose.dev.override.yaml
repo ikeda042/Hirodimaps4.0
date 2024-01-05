@@ -1,0 +1,27 @@
+services:
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-proxy"
+      - "--entrypoints.web.address=:3000"
+    networks:
+      traefik-proxy:
+    ports:
+      - 3000:3000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+  backend:
+    labels:
+      - "traefik.http.routers.backend.entrypoints=web"
+      - "traefik.http.routers.backend.rule=Host(`ikeda.localhost`) && PathPrefix(`/api/v2/`)"
+  frontend:
+    labels:
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.routers.frontend.rule=Host(`ikeda.localhost`)"
+      
+networks:
+  traefik-proxy:
+    name: "traefik-proxy"
