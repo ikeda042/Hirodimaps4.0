@@ -1,8 +1,5 @@
-# Docker　（Python-React App）のテンプレート
+# HirodaiMaps4.0
 
-## めも
-* frontendディレクトリでyarnをするとdevcontainerでyarn startができるようになる。
-* 上記もしかするとnpm install でもいいかも。
 * フロントエンドアクセスリンク
 localhost:3000
 * バックエンドアクセスリンク
